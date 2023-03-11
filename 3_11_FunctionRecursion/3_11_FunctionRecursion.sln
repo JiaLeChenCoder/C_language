@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "3_11_FunctionRecursion", "3_11_FunctionRecursion.vcxproj", "{AA135021-C4C4-43A4-A56B-08A255D3509E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA135021-C4C4-43A4-A56B-08A255D3509E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AA135021-C4C4-43A4-A56B-08A255D3509E}.Debug|Win32.Build.0 = Debug|Win32
+		{AA135021-C4C4-43A4-A56B-08A255D3509E}.Release|Win32.ActiveCfg = Release|Win32
+		{AA135021-C4C4-43A4-A56B-08A255D3509E}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
