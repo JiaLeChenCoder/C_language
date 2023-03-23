@@ -1,0 +1,4 @@
+﻿  test.c
+D:\vs2022实例\3_23_ReviewInvertedStrings\3_23_ReviewInvertedStrings\test.c(19,2): warning C4013: “gets”未定义；假设外部返回 int
+D:\vs2022实例\3_23_ReviewInvertedStrings\3_23_ReviewInvertedStrings\test.c(20,10): warning C4013: “strlen”未定义；假设外部返回 int
+  3_23_ReviewInvertedStrings.vcxproj -> D:\vs2022实例\3_23_ReviewInvertedStrings\x64\Debug\3_23_ReviewInvertedStrings.exe
