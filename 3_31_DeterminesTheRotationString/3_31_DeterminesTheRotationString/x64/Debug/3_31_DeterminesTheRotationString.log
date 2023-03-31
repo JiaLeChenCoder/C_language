@@ -1,0 +1,3 @@
+﻿  test.c
+D:\vs2022实例\3_31_DeterminesTheRotationString\3_31_DeterminesTheRotationString\test.c(7,16): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  3_31_DeterminesTheRotationString.vcxproj -> D:\vs2022实例\3_31_DeterminesTheRotationString\x64\Debug\3_31_DeterminesTheRotationString.exe
