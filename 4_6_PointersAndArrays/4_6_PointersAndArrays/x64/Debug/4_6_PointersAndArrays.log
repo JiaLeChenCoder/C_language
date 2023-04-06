@@ -1,0 +1,16 @@
+﻿  test.c
+D:\vs2022实例\4_6_PointersAndArrays\4_6_PointersAndArrays\test.c(17,9): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“size_t”
+D:\vs2022实例\4_6_PointersAndArrays\4_6_PointersAndArrays\test.c(17,9): message : 请考虑在格式字符串中使用“%zd”
+D:\vs2022实例\4_6_PointersAndArrays\4_6_PointersAndArrays\test.c(18,9): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“size_t”
+D:\vs2022实例\4_6_PointersAndArrays\4_6_PointersAndArrays\test.c(18,9): message : 请考虑在格式字符串中使用“%zd”
+D:\vs2022实例\4_6_PointersAndArrays\4_6_PointersAndArrays\test.c(19,9): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“size_t”
+D:\vs2022实例\4_6_PointersAndArrays\4_6_PointersAndArrays\test.c(19,9): message : 请考虑在格式字符串中使用“%zd”
+D:\vs2022实例\4_6_PointersAndArrays\4_6_PointersAndArrays\test.c(20,9): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“size_t”
+D:\vs2022实例\4_6_PointersAndArrays\4_6_PointersAndArrays\test.c(20,9): message : 请考虑在格式字符串中使用“%zd”
+D:\vs2022实例\4_6_PointersAndArrays\4_6_PointersAndArrays\test.c(21,9): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“size_t”
+D:\vs2022实例\4_6_PointersAndArrays\4_6_PointersAndArrays\test.c(21,9): message : 请考虑在格式字符串中使用“%zd”
+D:\vs2022实例\4_6_PointersAndArrays\4_6_PointersAndArrays\test.c(22,9): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“size_t”
+D:\vs2022实例\4_6_PointersAndArrays\4_6_PointersAndArrays\test.c(22,9): message : 请考虑在格式字符串中使用“%zd”
+D:\vs2022实例\4_6_PointersAndArrays\4_6_PointersAndArrays\test.c(23,9): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“size_t”
+D:\vs2022实例\4_6_PointersAndArrays\4_6_PointersAndArrays\test.c(23,9): message : 请考虑在格式字符串中使用“%zd”
+  4_6_PointersAndArrays.vcxproj -> D:\vs2022实例\4_6_PointersAndArrays\x64\Debug\4_6_PointersAndArrays.exe
