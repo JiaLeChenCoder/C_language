@@ -1,0 +1,4 @@
+﻿  test.c
+D:\vs2022实例\4_7_Structure\4_7_Structure\test.c(57,9): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“size_t”
+D:\vs2022实例\4_7_Structure\4_7_Structure\test.c(57,9): message : 请考虑在格式字符串中使用“%zd”
+  4_7_Structure.vcxproj -> D:\vs2022实例\4_7_Structure\x64\Debug\4_7_Structure.exe
