@@ -1,0 +1,6 @@
+﻿  test.c
+D:\vs2022实例\4_8_NonCustomType\4_8_NonCustomType\test.c(78,9): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“size_t”
+D:\vs2022实例\4_8_NonCustomType\4_8_NonCustomType\test.c(78,9): message : 请考虑在格式字符串中使用“%zd”
+D:\vs2022实例\4_8_NonCustomType\4_8_NonCustomType\test.c(78,9): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 2 拥有了类型“size_t”
+D:\vs2022实例\4_8_NonCustomType\4_8_NonCustomType\test.c(78,9): message : 请考虑在格式字符串中使用“%zd”
+  4_8_NonCustomType.vcxproj -> D:\vs2022实例\4_8_NonCustomType\x64\Debug\4_8_NonCustomType.exe
