@@ -1,27 +1,82 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include"function.h"
-/*函数功能的实现*/
+//函数功能的实现
 
-//初始化
+//初始化（静态                ）
+//void Initpeo(Conpeo* str)
+//{
+//	str->num = 0;//个数为0
+//	memset(str->arrpeo, 0, sizeof(str->arrpeo));
+//}
 void Initpeo(Conpeo* str)
 {
-	str->num = 0;//个数为0
-	//对结构体内的数据进行初始化时，用memset函数，因为数组的大小是不知道的
-	memset(str->arrpeo, 0, sizeof(str->arrpeo));
-}
-
-//添加联系人信息
-void Addpeople(Conpeo* str)
-{
-	//联系人已满
-	if (str->num == N)
+     str->arrpeo = (Peo*)malloc(sizeof(Peo)*DEFAULT_SZ);
+	if (str->arrpeo == NULL)
 	{
-		printf("通讯录已满，不能增加");
+		printf("通讯录初始化失败:%s\n",strerror(errno));
 		return;
 	}
-	//联系人未满
+	str->num= 0;
+	str->capacity = DEFAULT_SZ;
+}
+void Destroypeo(Conpeo* str)
+{
+	free(str->arrpeo);
+	str->arrpeo = NULL;
+	str->capacity = 0;
+	str->num = 0;
+	printf("释放内存\n");
+}
+
+//添加联系人信息(静态)
+//void Addpeople(Conpeo* str)
+//{
+//	//联系人已满
+//	if (str->num == N)
+//	{
+//		printf("通讯录已满，不能增加");
+//		return;
+//	}
+//	//联系人未满
+//	else
+//	{
+//		printf("请输入联系人姓名：");
+//		scanf("%s", str->arrpeo[str->num].name);
+//		printf("请输入联系人性别：");
+//		scanf("%s", str->arrpeo[str->num].sex);
+//		printf("请输入联系人年龄：");
+//		scanf("%d", &(str->arrpeo[str->num].age));
+//		printf("请输入联系人电话：");
+//		scanf("%s", str->arrpeo[str->num].tele);
+//		printf("请输入联系人地址：");
+//		scanf("%s", str->arrpeo[str->num].strdess);
+//	}
+//	str->num++;
+//}
+
+//动态
+void CheckCapacity(Conpeo* str)
+{
+	if (str->num== str->capacity)
+	{
+	 Peo* ptr=(Peo*)realloc(str->arrpeo, (str->capacity + INC_SZ) * sizeof(Peo));
+	if (ptr == NULL)
+	{
+		printf("CheckCapacity: % s\n", strerror(errno));
+		return;
+	}
 	else
 	{
+		str->arrpeo = ptr;
+		str->capacity += INC_SZ;
+		printf("增容成功，当前容量：%d\n", str->capacity);
+	}
+	}
+}
+void Addpeople(Conpeo* str)
+{
+	CheckCapacity(str);
+
 		printf("请输入联系人姓名：");
 		scanf("%s", str->arrpeo[str->num].name);
 		printf("请输入联系人性别：");
@@ -32,7 +87,6 @@ void Addpeople(Conpeo* str)
 		scanf("%s", str->arrpeo[str->num].tele);
 		printf("请输入联系人地址：");
 		scanf("%s", str->arrpeo[str->num].strdess);
-	}
 	str->num++;
 }
 
@@ -42,14 +96,14 @@ void Dispalypeo(Conpeo* str)
 	//列表为空时
 	if (str->num == 0)
 	{
-		printf("列表为空，没有联系人！\n");
+		printf("列表为空！\n");
 	}
 	else
 	{
-		printf("%-20s %-5s %-5s %-12s %-20s\n", "姓名", "性别", "年龄", "电话", "地址");
+		printf("%-20s %-5s %-5s %-15s %-20s\n", "姓名", "性别", "年龄", "电话", "地址");
 		for (int i = 0; i < str->num; i++)
 		{
-			printf("%-20s %-5s %-5d %-12s %-20s\n", str->arrpeo[i].name, str->arrpeo[i].sex, str->arrpeo[i].age, str->arrpeo[i].tele, str->arrpeo[i].strdess);
+			printf("%-20s %-5s %-5d %-15s %-20s\n", str->arrpeo[i].name, str->arrpeo[i].sex, str->arrpeo[i].age, str->arrpeo[i].tele, str->arrpeo[i].strdess);
 		}
 	}
 }
@@ -61,7 +115,7 @@ int Seachpeo(Conpeo* str, char name[])
 	//没有联系人
 	if (str->num == 0)
 	{
-		printf("列表为空，没有联系人\n");
+		printf("列表为空\n");
 		return -1;
 	}
 	else
@@ -71,7 +125,7 @@ int Seachpeo(Conpeo* str, char name[])
 			//字符串的比较
 			if (strcmp(str->arrpeo[i].name, name) == 0)
 			{
-				//输出所查找的联系人，所在下标
+				//输出所查找的联系人
 				return i;
 			}
 		}
@@ -79,7 +133,7 @@ int Seachpeo(Conpeo* str, char name[])
 	}
 }
 
-//查找并显示指定联系人的信息
+//显示指定联系人的信息
 void seach_dispalupeo(Conpeo* str)
 {
 	char name[NAME] = { 0 };
@@ -97,8 +151,8 @@ void seach_dispalupeo(Conpeo* str)
 	else
 	{
 		printf("查找的联系人，信息如下：\n");
-		printf("%-20s %-5s %-5s %-12s %-20s\n", "姓名", "性别", "年龄", "电话", "地址");
-		printf("%-20s %-5s %-5d %-12s %-20s\n", str->arrpeo[pos].name, str->arrpeo[pos].sex, str->arrpeo[pos].age, str->arrpeo[pos].tele, str->arrpeo[pos].strdess);
+		printf("%-20s %-5s %-5s %-15s %-20s\n", "姓名", "性别", "年龄", "电话", "地址");
+		printf("%-20s %-5s %-5d %-15s %-20s\n", str->arrpeo[pos].name, str->arrpeo[pos].sex, str->arrpeo[pos].age, str->arrpeo[pos].tele, str->arrpeo[pos].strdess);
 	}
 }
 

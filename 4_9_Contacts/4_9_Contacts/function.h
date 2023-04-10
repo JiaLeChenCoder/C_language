@@ -3,12 +3,15 @@
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
+#include<errno.h>
 
-#define N 1000//s数组中包含的人数
+#define N 3//数组中包含的人数
 #define NAME 20//名字中的字符个数
 #define SEX 10//性别的字符个数
-#define TELE 11 //电话号码中的位数
+#define TELE 20 //电话号码中的位数
 #define DRESS 30//地址中的字符个数
+#define DEFAULT_SZ 3//默认时候为3个
+#define INC_SZ 2//扩容的个数
 
 //创建一个结构体，包含一个学生的信息
 typedef struct People
@@ -22,12 +25,23 @@ typedef struct People
 }Peo;
 
 //创建一个通讯录结构提，用包含学生数组和人数
+//静态的版本
+//typedef struct contact
+//{
+//	Peo arrpeo[N];
+//	int num;
+//}Conpeo;
+// 
+//动态的版本
+//不够的话，每次增加两个人的信息
 typedef struct contact
 {
-	Peo arrpeo[N];
-	int num;
+	Peo* arrpeo;//data指向了存放数据的空间
+	int num;//存放通讯录的有效信息个数
+	int capacity;//记录通讯录的最大容量
 }Conpeo;
-
+//销毁通讯录
+void Destroypeo(Conpeo* str);
 //初始化联系人
 void Initpeo(Conpeo* str);
 

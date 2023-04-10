@@ -24,7 +24,7 @@ int main()
 {
 	int input;//功能选择
 	Conpeo conpeo;//创建通讯录变量
-	Initpeo(&conpeo);
+	Initpeo(&conpeo);//初始化通讯录
 
 	do
 	{
@@ -34,6 +34,7 @@ int main()
 		switch (input)
 		{
 		case EXIT:
+			Destroypeo(&conpeo);
 			printf("操作完成，请退出！");
 			break;
 		case ADD:
@@ -64,3 +65,4 @@ int main()
 	} while (input);
 	return 0;
 }
+
