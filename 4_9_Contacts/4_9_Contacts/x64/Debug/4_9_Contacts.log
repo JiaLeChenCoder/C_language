@@ -1,2 +1,6 @@
 ﻿  function.c
+D:\vs2022实例\4_9_Contacts\4_9_Contacts\function.c(19,11): warning C4098: “Loadpeo”:“void”函数返回值
+D:\vs2022实例\4_9_Contacts\4_9_Contacts\function.c(90,3): warning C4033: “CheckCapacity”必须返回值
+D:\vs2022实例\4_9_Contacts\4_9_Contacts\function.c(286,11): warning C4098: “Savepeo”:“void”函数返回值
+D:\vs2022实例\4_9_Contacts\4_9_Contacts\function.c(99): warning C4716: “CheckCapacity”: 必须返回一个值
   4_9_Contacts.vcxproj -> D:\vs2022实例\4_9_Contacts\x64\Debug\4_9_Contacts.exe

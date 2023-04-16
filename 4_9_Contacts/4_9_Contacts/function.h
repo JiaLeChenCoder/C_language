@@ -65,3 +65,6 @@ void Dispempeo(Conpeo* str);
 
 //按姓名排序联系人
 void sort_peo(Conpeo* str);
+
+//保存数据到头文件
+void Savepeo(Conpeo* str);

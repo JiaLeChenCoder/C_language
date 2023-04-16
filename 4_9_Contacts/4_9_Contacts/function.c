@@ -8,6 +8,28 @@
 //	str->num = 0;//个数为0
 //	memset(str->arrpeo, 0, sizeof(str->arrpeo));
 //}
+int CheckCapacity(Conpeo* str);
+void Loadpeo(Conpeo* str)
+{
+	//打开文件
+	FILE* pf = fopen("function.dat", "rb");
+	if (pf == NULL)
+	{
+		perror("Loadpeo:fopen");
+		return 0;
+	}
+	//读文件
+	Peo tmp = { 0 };
+	while (fread(&tmp, sizeof(Peo), 1, pf))
+	{
+		CheckCapacity(str);
+		str->arrpeo[str->num] = tmp;
+		str->num++;
+	}
+	//关闭文件
+	fclose(pf);
+	pf = NULL;
+}
 void Initpeo(Conpeo* str)
 {
      str->arrpeo = (Peo*)malloc(sizeof(Peo)*DEFAULT_SZ);
@@ -18,6 +40,8 @@ void Initpeo(Conpeo* str)
 	}
 	str->num= 0;
 	str->capacity = DEFAULT_SZ;
+	//加载文件信息到通讯录中
+	Loadpeo(str);
 }
 void Destroypeo(Conpeo* str)
 {
@@ -55,7 +79,7 @@ void Destroypeo(Conpeo* str)
 //}
 
 //动态
-void CheckCapacity(Conpeo* str)
+int CheckCapacity(Conpeo* str)
 {
 	if (str->num== str->capacity)
 	{
@@ -251,4 +275,24 @@ void sort_peo(Conpeo* str)
 		}
 	}
 	printf("排序成功！\n");
+}
+
+void Savepeo(Conpeo* str)
+{
+	FILE* pf = fopen("function.dat", "wb");
+	if (pf == NULL)
+	{
+		perror("Savepeo:fopen");
+		return 0;
+	}
+	//写数据
+	int i = 0;
+	for (i = 0; i < str->num; i++)
+	{
+		fwrite(str->arrpeo + i, sizeof(Peo), 1, pf);
+	}
+	//关闭文件
+	fclose(pf);
+	pf = NULL;
+	printf("保存成功");
 }

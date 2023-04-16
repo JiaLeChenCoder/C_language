@@ -24,7 +24,7 @@ int main()
 {
 	int input;//功能选择
 	Conpeo conpeo;//创建通讯录变量
-	Initpeo(&conpeo);//初始化通讯录
+	Initpeo(&conpeo);//初始化通讯录,加载文件的信息到通讯录中
 
 	do
 	{
@@ -34,6 +34,7 @@ int main()
 		switch (input)
 		{
 		case EXIT:
+			Savepeo(&conpeo);
 			Destroypeo(&conpeo);
 			printf("操作完成，请退出！");
 			break;
