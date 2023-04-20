@@ -1,0 +1,6 @@
+﻿  test.c
+D:\vs2022实例\4_20_CLanguageReview\4_20_CLanguageReview\test.c(37,10): warning C4098: “B”:“void”函数返回值
+D:\vs2022实例\4_20_CLanguageReview\4_20_CLanguageReview\test.c(51,10): warning C4098: “B1”:“void”函数返回值
+D:\vs2022实例\4_20_CLanguageReview\4_20_CLanguageReview\test.c(57,9): warning C4047: “函数”:“int (*)[10]”与“int [10]”的间接级别不同
+D:\vs2022实例\4_20_CLanguageReview\4_20_CLanguageReview\test.c(57,5): warning C4024: “A3”: 形参和实参 1 的类型不同
+  4_20_CLanguageReview.vcxproj -> D:\vs2022实例\4_20_CLanguageReview\x64\Debug\4_20_CLanguageReview.exe
