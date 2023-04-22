@@ -1,6 +1,5 @@
 #define _CRT_SECURE_NO_WARNINGS  1
 #include"SList.h"
-//#include"SList.h"
 //void Test1()
 //{
 //	SLTNode* plist = NULL;
