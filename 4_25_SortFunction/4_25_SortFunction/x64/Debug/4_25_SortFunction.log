@@ -1,0 +1,3 @@
+﻿  test.c
+D:\vs2022实例\4_25_SortFunction\4_25_SortFunction\test.c(27,66): warning C4267: “函数”: 从“size_t”转换到“int”，可能丢失数据
+  4_25_SortFunction.vcxproj -> D:\vs2022实例\4_25_SortFunction\x64\Debug\4_25_SortFunction.exe
