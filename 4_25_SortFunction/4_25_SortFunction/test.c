@@ -16,20 +16,20 @@ void bubble_sort(void* base, size_t num, size_t width,int (*cmp)(const void*p1,c
 	size_t i = 0;
 	for(i=0;i<num-1;i++)
 	{
-		//Ò»ÌËÃ°ÅİÅÅĞòµÄ¹ı³Ì
+		//ä¸€è¶Ÿå†’æ³¡æ’åºçš„è¿‡ç¨‹
 		size_t j = 0;
 		for (j = 0; j < num - 1; j++)
 		{
-			//Á½¸öÏàÁÚµÄÔªËØ±È½Ï
+			//ä¸¤ä¸ªç›¸é‚»å…ƒç´ æ¯”è¾ƒ
 			if (cmp((char*)base + j * width, (char*)base + (j + 1) * width) > 0)
 			{
-				//½»»»
+				//äº¤æ¢
 				Swap((char*)base + j * width, (char*)base + (j + 1) * width, width);
 			}
 		}
 	}
 }
-//×Ô¼ºÌá¹©µÄº¯Êı
+//è‡ªå·±æä¾›çš„å‡½æ•°
 int cmp_int(const void* p1, const void* p2)
 {
 	return *(int*)p1 - *(int*)p2;
