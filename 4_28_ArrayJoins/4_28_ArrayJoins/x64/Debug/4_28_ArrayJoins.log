@@ -1,0 +1,3 @@
+﻿  test.c
+D:\vs2022实例\4_28_ArrayJoins\4_28_ArrayJoins\test.c(9,2): warning C4013: “gets”未定义；假设外部返回 int
+  4_28_ArrayJoins.vcxproj -> D:\vs2022实例\4_28_ArrayJoins\x64\Debug\4_28_ArrayJoins.exe
