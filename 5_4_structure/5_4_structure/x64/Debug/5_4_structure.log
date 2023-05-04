@@ -1,0 +1,3 @@
+﻿  test.c
+D:\vs2022实例\5_4_structure\5_4_structure\test.c(16,2): warning C4013: “gets”未定义；假设外部返回 int
+  5_4_structure.vcxproj -> D:\vs2022实例\5_4_structure\x64\Debug\5_4_structure.exe
