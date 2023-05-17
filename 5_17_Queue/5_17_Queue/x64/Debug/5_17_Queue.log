@@ -1,0 +1,12 @@
+﻿  Queue.c
+D:\vs2022实例\5_17_Queue\5_17_Queue\Queue.c(14,3): warning C4013: “free”未定义；假设外部返回 int
+D:\vs2022实例\5_17_Queue\5_17_Queue\Queue.c(10,9): warning C4133: “初始化”: 从“Queue *”到“QNode *”的类型不兼容
+D:\vs2022实例\5_17_Queue\5_17_Queue\Queue.c(24,24): warning C4013: “malloc”未定义；假设外部返回 int
+D:\vs2022实例\5_17_Queue\5_17_Queue\Queue.c(24,45): warning C4312: “类型强制转换”: 从“int”转换到更大的“QNode *”
+D:\vs2022实例\5_17_Queue\5_17_Queue\Queue.c(72,24): warning C4098: “QueueFront”:“void”函数返回值
+D:\vs2022实例\5_17_Queue\5_17_Queue\Queue.c(79,23): warning C4098: “QueueBack”:“void”函数返回值
+D:\vs2022实例\5_17_Queue\5_17_Queue\Queue.c(85,17): warning C4098: “QueueSize”:“void”函数返回值
+  Test.c
+  正在生成代码...
+MSVCRTD.lib(exe_main.obj) : error LNK2019: 无法解析的外部符号 main，函数 "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ) 中引用了该符号
+D:\vs2022实例\5_17_Queue\x64\Debug\5_17_Queue.exe : fatal error LNK1120: 1 个无法解析的外部命令
