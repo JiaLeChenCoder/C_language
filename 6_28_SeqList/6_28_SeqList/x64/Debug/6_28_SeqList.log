@@ -1,0 +1,4 @@
+﻿  test.c
+D:\vs2022实例\6_28_SeqList\6_28_SeqList\test.c(47,9): warning C4047: “=”:“int *”与“int”的间接级别不同
+D:\vs2022实例\6_28_SeqList\6_28_SeqList\test.c(49,9): warning C4047: “=”:“int”与“int *”的间接级别不同
+  6_28_SeqList.vcxproj -> D:\vs2022实例\6_28_SeqList\x64\Debug\6_28_SeqList.exe
