@@ -1,0 +1,5 @@
+﻿  Sort.c
+  Test.c
+D:\vs2022实例\7_11_Sort\7_11_Sort\Test.c(61,8): warning C4244: “函数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+  正在生成代码...
+  7_11_Sort.vcxproj -> D:\vs2022实例\7_11_Sort\x64\Debug\7_11_Sort.exe
