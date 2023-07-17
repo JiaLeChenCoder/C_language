@@ -1,0 +1,88 @@
+//https://leetcode.cn/problems/binary-tree-postorder-traversal/submissions/
+//二叉树的后序遍历
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+
+
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+ void _postorder(int* arr,struct TreeNode* root,int* returnSize)
+ {
+     if(root==NULL)
+     return;
+     _postorder(arr,root->left,returnSize);
+     _postorder(arr,root->right,returnSize);
+     arr[(*returnSize)++]=root->val;
+ }
+int* postorderTraversal(struct TreeNode* root, int* returnSize){
+    int* arr=(int*)malloc(sizeof(int)*1000);
+    *returnSize=0;
+    _postorder(arr,root,returnSize);
+    return arr;
+}
+
+//https://leetcode.cn/problems/binary-tree-inorder-traversal/
+//二叉树的中序遍历
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+
+
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+ void _inorder(int* res,int* returnSize,struct TreeNode* root)
+ {
+     if(root==NULL)
+     return;
+       _inorder(res,returnSize,root->left);
+     res[((*returnSize)++)]=root->val;
+     _inorder(res,returnSize,root->right);
+ }
+
+int* inorderTraversal(struct TreeNode* root, int* returnSize){
+     int* res=(int*)malloc(sizeof(int)*2000); 
+    *returnSize=0;
+    _inorder(res,returnSize,root);
+    return res;
+}
+
+//https://leetcode.cn/problems/binary-tree-preorder-traversal/
+//二叉树的前序遍历
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+ void _preorder(int* res,int* returnSize,struct TreeNode* root)
+ {
+     if(root==NULL)
+     return;
+     res[((*returnSize)++)]=root->val;
+     _preorder(res,returnSize,root->left);
+     _preorder(res,returnSize,root->right);
+ }
+int* preorderTraversal(struct TreeNode* root, int* returnSize){
+    int* res=(int*)malloc(sizeof(int)*2000); 
+    *returnSize=0;
+    _preorder(res,returnSize,root);
+    return res;
+}
