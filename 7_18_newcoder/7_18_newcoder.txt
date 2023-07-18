@@ -1,0 +1,91 @@
+//https://www.nowcoder.com/practice/ff05d44dfdb04e1d83bdbdab320efbcb?tpId=196&tqId=37058&rp=1&ru=/exam/oj&qru=/exam/oj&sourceUrl=%2Fexam%2Foj%3Fdifficulty%3D2%26page%3D1%26pageSize%3D50%26search%3D%26tab%3D%25E7%25AE%2597%25E6%25B3%2595%25E7%25AF%2587%26topicId%3D196&difficulty=2&judgeStatus=undefined&tags=&title=
+// 对称的二叉树
+/**
+ * struct TreeNode {
+ *	int val;
+ *	struct TreeNode *left;
+ *	struct TreeNode *right;
+ * };
+ */
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param pRoot TreeNode类 
+ * @return bool布尔型
+ */
+#include <stdbool.h>
+bool _isSymmetrical(struct TreeNode* pleft,struct TreeNode* pright)
+{
+    if(pleft==NULL&&pright==NULL)
+   return true;
+   if(pleft==NULL||pright==NULL)
+   return false;
+   if(pleft->val!=pright->val)
+   return false;
+   return _isSymmetrical(pleft->left,pright->right)
+    &&_isSymmetrical(pleft->right,pright->left);
+}
+bool isSymmetrical(struct TreeNode* pRoot ) {
+    // write code here
+    if(pRoot==NULL)
+    return true;
+   return  _isSymmetrical(pRoot->left,pRoot->right);
+    
+}
+
+//https://www.nowcoder.com/practice/8a2b2bf6c19b4f23a9bdb9b233eefa73?tpId=196&tqId=37055&rp=1&ru=/exam/oj&qru=/exam/oj&sourceUrl=%2Fexam%2Foj%3Fdifficulty%3D2%26page%3D1%26pageSize%3D50%26search%3D%26tab%3D%25E7%25AE%2597%25E6%25B3%2595%25E7%25AF%2587%26topicId%3D196&difficulty=2&judgeStatus=undefined&tags=&title=
+//二叉树的最大深度
+/**
+ * struct TreeNode {
+ *	int val;
+ *	struct TreeNode *left;
+ *	struct TreeNode *right;
+ * };
+ */
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param root TreeNode类 
+ * @return int整型
+ */
+int maxDepth(struct TreeNode* root ) {
+    // write code here
+    if(root==NULL)
+        return 0;
+        int leftndepth=maxDepth(root->left);
+        int rightndepth=maxDepth(root->right);
+    return leftndepth>rightndepth?leftndepth+1:rightndepth+1;
+}
+
+//https://www.nowcoder.com/practice/650474f313294468a4ded3ce0f7898b9?tpId=196&tqId=37048&rp=1&ru=/exam/oj&qru=/exam/oj&sourceUrl=%2Fexam%2Foj&difficulty=2&judgeStatus=undefined&tags=583,586,582,581,580,578,5050&title=
+//判断链表中是否有环
+#include <stdbool.h>
+/**
+ * struct ListNode {
+ *	int val;
+ *	struct ListNode *next;
+ * };
+ */
+
+/**
+ * 
+ * @param head ListNode类 
+ * @return bool布尔型
+ */
+bool hasCycle(struct ListNode* head ) {
+    // write code here
+    if(head==NULL||head->next==NULL)
+    return false;
+    struct ListNode* slow=head;
+    struct ListNode* fast=head;
+    while(fast!=NULL&&fast->next!=NULL)
+    {
+         slow=slow->next;
+        fast=fast->next->next;
+          if(slow==fast)
+        return true;
+    }
+    return false;
+}
