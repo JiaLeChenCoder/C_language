@@ -9,13 +9,13 @@ void PrintArray(int* a, int n)
 	printf("\n");
 }
 
-// Ê±¼ä¸´ÔÓ¶È(×î»µ)£ºO(N^2) -- ÄæĞò
-// Ê±¼ä¸´ÔÓ¶È(×îºÃ)£ºO(N) -- Ë³ĞòÓĞĞò
+// æ—¶é—´å¤æ‚åº¦(æœ€å)ï¼šO(N^2) -- é€†åº
+// æ—¶é—´å¤æ‚åº¦(æœ€å¥½)ï¼šO(N) -- é¡ºåºæœ‰åº
 //void InsertSort(int* a, int n)
 //{
 //	for (int i = 1; i < n; ++i)
 //	{
-//		// [0, end] ÓĞĞò£¬²åÈëtmpÒÀ¾ÉÓĞĞò
+//		// [0, end] æœ‰åºï¼Œæ’å…¥tmpä¾æ—§æœ‰åº
 //		int end = i - 1;
 //		int tmp = a[i];
 //
@@ -39,7 +39,7 @@ void InsertSort(int* a, int n)
 {
 	for (int i = 0; i < n - 1; ++i)
 	{
-		// [0, end] ÓĞĞò£¬²åÈëtmpÒÀ¾ÉÓĞĞò
+		// [0, end] æœ‰åºï¼Œæ’å…¥tmpä¾æ—§æœ‰åº
 		int end = i;
 		int tmp = a[i + 1];
 
@@ -83,18 +83,16 @@ void InsertSort(int* a, int n)
 			a[end + gap] = tmp;
 		}
 	}*/
-
-	// ĞİÏ¢20:28¼ÌĞø
 	// O(N^1.3)
 void ShellSort(int* a, int n)
 {
-	// 1¡¢gap > 1 Ô¤ÅÅĞò
-	// 2¡¢gap == 1 Ö±½Ó²åÈëÅÅĞò
+	// 1ã€gap > 1 é¢„æ’åº
+	// 2ã€gap == 1 ç›´æ¥æ’å…¥æ’åº
 
 	int gap = n;
 	while (gap > 1)
 	{
-		gap = gap / 3 + 1;  // +1¿ÉÒÔ±£Ö¤×îºóÒ»´ÎÒ»¶¨ÊÇ1
+		gap = gap / 3 + 1;  // +1å¯ä»¥ä¿è¯æœ€åä¸€æ¬¡ä¸€å®šæ˜¯1
 		// gap = gap / 2;
 		for (int i = 0; i < n - gap; ++i)
 		{
@@ -169,7 +167,7 @@ void SelectSort(int* a, int n)
 		}
 
 		Swap(&a[begin], &a[mini]);
-		// Èç¹ûmaxiºÍbeginÖØµş£¬ĞŞÕıÒ»ÏÂ¼´¿É
+		// å¦‚æœmaxiå’Œbeginé‡å ï¼Œä¿®æ­£ä¸€ä¸‹å³å¯
 		if (begin == maxi)
 		{
 			maxi = mini;
@@ -188,7 +186,7 @@ void AdjustDown(int* a, int n, int parent)
 
 	while (child < n)
 	{
-		// ÕÒ³öĞ¡µÄÄÇ¸öº¢×Ó
+		// æ‰¾å‡ºå°çš„é‚£ä¸ªå­©å­
 		if (child + 1 < n && a[child + 1] > a[child])
 		{
 			++child;
@@ -207,10 +205,10 @@ void AdjustDown(int* a, int n, int parent)
 	}
 }
 
-// ÅÅÉıĞò
+// æ’å‡åº
 void HeapSort(int* a, int n)
 {
-	// ½¨´ó¶Ñ
+	// å»ºå¤§å †
 	for (int i = (n - 1 - 1) / 2; i >= 0; --i)
 	{
 		AdjustDown(a, n, i);
@@ -232,13 +230,13 @@ int PartSort1(int* a, int left, int right)
 	int keyi = left;
 	while (left < right)
 	{
-		// ÓÒ±ßÕÒĞ¡
+		// å³è¾¹æ‰¾å°
 		while (left < right && a[right] >= a[keyi])
 		{
 			--right;
 		}
 
-		// ×ó±ßÕÒ´ó
+		// å·¦è¾¹æ‰¾å¤§
 		while (left < right && a[left] <= a[keyi])
 		{
 			++left;
@@ -253,7 +251,7 @@ int PartSort1(int* a, int left, int right)
 }
 
 
-// ÍÚ¿Ó·¨
+// æŒ–å‘æ³•
 // [left, right]
 int PartSort2(int* a, int left, int right)
 {
@@ -261,7 +259,7 @@ int PartSort2(int* a, int left, int right)
 	int hole = left;
 	while (left < right)
 	{
-		// ÓÒ±ßÕÒĞ¡
+		// å³è¾¹æ‰¾å°
 		while (left < right && a[right] >= key)
 		{
 			--right;
@@ -270,7 +268,7 @@ int PartSort2(int* a, int left, int right)
 		a[hole] = a[right];
 		hole = right;
 
-		// ×ó±ßÕÒ´ó
+		// å·¦è¾¹æ‰¾å¤§
 		while (left < right && a[left] <= key)
 		{
 			++left;
@@ -285,7 +283,7 @@ int PartSort2(int* a, int left, int right)
 	return hole;
 }
 
-// Ç°ºóÖ¸Õë·¨
+// å‰åæŒ‡é’ˆæ³•
 // [left, right]
 int PartSort3(int* a, int left, int right)
 {
