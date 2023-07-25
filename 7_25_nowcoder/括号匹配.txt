@@ -1,0 +1,53 @@
+https://www.nowcoder.com/practice/37548e94a270412c8b9fb85643c8ccc2?tpId=295&tqId=726&ru=/exam/company&qru=/ta/format-top101/question-ranking&sourceUrl=%2Fexam%2Fcompany
+
+**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ *
+ * @param s string字符串
+ * @return bool布尔型
+ */
+
+char check(char pre){
+    if(pre==')'){
+        return '(';
+    }
+    if(pre=='}'){
+        return '{';
+    }
+    if(pre==']'){
+        return '[';
+    }
+    return 0;
+}
+
+bool isValid(char* s ) {
+	//只要字符串长度必为偶数时才能成功配对
+    if(strlen(s)%2!=0){
+        return 0;
+    }
+    //初始化一个字符串数组做栈
+    char* stack;
+    int top=0;
+    stack=(char*)malloc(sizeof(char)*strlen(s));
+    for(int i=0;i<strlen(s);i++){
+        //如果是左括号，则入栈
+        if(s[i]=='('||s[i]=='{'||s[i]=='['){
+            stack[top++]=s[i];
+        }
+        //如果是右括号
+        if(s[i]==')'||s[i]=='}'||s[i]==']'){
+            if(top<1){
+                return 0;
+            }
+            if(stack[top-1]==check(s[i])){
+                stack[--top]='\0';
+            }
+        }
+    }
+    if(strlen(stack)!=0){
+        return 0;
+    }else{
+        return 1;
+    }
+}
