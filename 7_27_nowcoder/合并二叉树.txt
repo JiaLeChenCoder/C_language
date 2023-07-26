@@ -1,0 +1,30 @@
+https://www.nowcoder.com/practice/7298353c24cc42e3bd5f0e0bd3d1d759?tpId=295&tqId=1025038&ru=/exam/oj&qru=/ta/format-top101/question-ranking&sourceUrl=%2Fexam%2Foj
+
+/**
+ * struct TreeNode {
+ *	int val;
+ *	struct TreeNode *left;
+ *	struct TreeNode *right;
+ * };
+ */
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param t1 TreeNode类 
+ * @param t2 TreeNode类 
+ * @return TreeNode类
+ */
+struct TreeNode* mergeTrees(struct TreeNode* t1, struct TreeNode* t2 ) {
+    // write code here
+    if(t1==NULL&&t2==NULL)
+    return t1;
+    if(t1==NULL&&t2!=NULL)
+    return t2;
+    if(t1!=NULL&&t2==NULL)
+    return t1;
+    t1->val+=t2->val;
+    t1->left= mergeTrees(t1->left,t2->left);
+    t1->right= mergeTrees(t1->right,t2->right);
+    return t1;
+}
