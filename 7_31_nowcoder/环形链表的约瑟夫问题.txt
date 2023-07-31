@@ -1,0 +1,58 @@
+https://www.nowcoder.com/practice/41c399fdb6004b31a6cbb047c641ed8a?tpId=196&tqId=37145&ru=/exam/oj
+
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param n int整型 
+ * @param m int整型 
+ * @return int整型
+ */
+ struct ListNode* buynode(int a)
+ {
+    struct ListNode* temp=(struct ListNode*)malloc(sizeof(struct ListNode));
+    if(temp==NULL)
+    {
+        perror("malloc fail");
+        return 0;
+    }
+    temp->val=a;
+    temp->next=NULL;
+    return temp;
+ }
+ struct ListNode*  creatlist(int n)
+ {
+    struct ListNode* head=buynode(-1);
+    struct ListNode* cur=head;
+
+    for(int i=1;i<=n;i++)
+    {
+        head->next=buynode(i);
+        head=head->next;
+    }
+    head->next=cur->next;
+    return cur->next;
+ }
+int ysf(int n, int m ) {
+    // write code here
+     struct ListNode* cur= creatlist(n);
+     struct ListNode* pre=NULL;
+     int i=1;
+     while(cur->next!=cur)
+     {
+        if(i==m)
+        {
+            pre->next=cur->next;
+            free(cur);
+            cur=pre->next;
+            i=1;
+        }
+        else
+        {
+            pre=cur;
+        cur=cur->next;
+        i++;
+        }
+     }
+     return cur->val;
+}

@@ -1,0 +1,28 @@
+https://www.nowcoder.com/practice/405a9033800b403ba8b7b905bab0463d?tpId=196&tqId=39666&ru=/exam/oj
+
+/**
+ * struct TreeNode {
+ *	int val;
+ *	struct TreeNode *left;
+ *	struct TreeNode *right;
+ * };
+ */
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param root TreeNode类 
+ * @return int整型
+ */
+ 
+int sumOfLeftLeaves(struct TreeNode* root ) {
+    // write code here
+    int sum=0;
+    if(root==NULL)
+    return 0;
+    if(root->left!=NULL&&root->left->left==NULL&&root->left->right==NULL)
+    {
+        sum+=root->left->val;
+    }
+    return sum+=sumOfLeftLeaves(root->left)+sumOfLeftLeaves(root->right);
+}
