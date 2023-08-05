@@ -20,9 +20,11 @@ int main()
 		SLTInsertAfter(pos, 30);
 		SLTPrint(s1);
 		printf("\n");
+		
 		SLTEraseAfter(pos);
 		SLTPrint(s1);
 		printf("\n");
+		
 		SLTErase(&s1,pos);
 		SLTPrint(s1);
 	}
