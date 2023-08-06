@@ -21,22 +21,26 @@ int* spiralOrder(int** matrix, int matrixRowLen, int* matrixColLen,
     int count = 0;
     int i = 0;
     while (1) {
-        for (i = z; i <= s; i++) {
+        for (i = z; i <= s; i++)
+        {
             a[count++] = matrix[z][i];
         }
         if (len <= count)
             break;
-        for (i = x + 1; i <= y; i++) {
+        for (i = x + 1; i <= y; i++) 
+        {
             a[count++] = matrix[i][s];
         }
         if (len <= count)
             break;
-        for (i = s - 1; i >= z; i--) {
+        for (i = s - 1; i >= z; i--)
+        {
             a[count++] = matrix[y][i];
         }
         if (len <= count)
             break;
-        for (i = y - 1; i > x; i--) {
+        for (i = y - 1; i > x; i--) 
+        {
             a[count++] = matrix[i][x];
         }
         if (len <= count)
