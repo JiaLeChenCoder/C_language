@@ -17,7 +17,6 @@ void booleanSort(int arr[], int n) {
     for (int i = 0; i < n; i++) {
         count[arr[i] - min]++;
     }
-
     int k = 0;
     for (int i = 0; i < range; i++) {
         while (count[i] > 0) {
