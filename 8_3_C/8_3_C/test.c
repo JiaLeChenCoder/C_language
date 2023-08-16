@@ -12,7 +12,6 @@
 //	}
 //	return 0;
 //}
-//continue 代码1
 //#include <stdio.h>
 //int main()
 //{
