@@ -19,8 +19,10 @@ int sumOfLeftLeaves(struct TreeNode* root ) {
     // write code here
     int sum=0;
     if(root==NULL)
+{
     return 0;
-    if(root->left!=NULL&&root->left->left==NULL&&root->left->right==NULL)
+}
+if(root->left!=NULL&&root->left->left==NULL&&root->left->right==NULL)
     {
         sum+=root->left->val;
     }
