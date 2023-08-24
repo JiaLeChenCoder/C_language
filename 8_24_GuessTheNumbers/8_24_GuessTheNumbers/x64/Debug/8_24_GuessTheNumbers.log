@@ -1,0 +1,3 @@
+﻿  test.c
+D:\vs2022实例\8_24_GuessTheNumbers\8_24_GuessTheNumbers\test.c(9,11): warning C4244: “函数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+  8_24_GuessTheNumbers.vcxproj -> D:\vs2022实例\8_24_GuessTheNumbers\x64\Debug\8_24_GuessTheNumbers.exe
