@@ -1,0 +1,4 @@
+﻿  test.c
+D:\vs2022实例\9_4_C_7\9_4_C_7\test.c(5,12): warning C4101: “j”: 未引用的局部变量
+D:\vs2022实例\9_4_C_7\9_4_C_7\test.c(5,9): warning C4101: “i”: 未引用的局部变量
+  9_4_C_7.vcxproj -> D:\vs2022实例\9_4_C_7\x64\Debug\9_4_C_7.exe
