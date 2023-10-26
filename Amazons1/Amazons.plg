@@ -1,0 +1,32 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Amazons - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x804 /fo"Debug/Amazons.res" /d "_DEBUG" "I:\亚马逊棋博弈\亚马逊\新建文件夹\Amazons1\Amazons.rc"" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP68.tmp" with contents
+[
+/nologo /subsystem:windows /incremental:yes /pdb:"Debug/Amazons.pdb" /debug /machine:I386 /out:"Debug/Amazons.exe" /pdbtype:sept 
+".\Debug\Amazons.obj"
+".\Debug\AmazonsDlg.obj"
+".\Debug\Board.obj"
+".\Debug\Computer.obj"
+".\Debug\Move.obj"
+".\Debug\StdAfx.obj"
+".\Debug\Amazons.res"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP68.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Linking...
+
+
+
+<h3>Results</h3>
+Amazons.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

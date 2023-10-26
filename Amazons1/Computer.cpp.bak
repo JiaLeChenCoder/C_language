@@ -1,0 +1,437 @@
+
+// Computer.cpp: implementation of the CComputer class.
+//
+//////////////////////////////////////////////////////////////////////
+
+/*
+ * Computer类 通过对当前棋盘状态进行“估值”，生成电脑的走法
+ * 主要想法：
+ *         这是一款领土抢占游戏，玩家会尽量去占领更多的领地，基于这一点
+ *     估值算法主要是针对某一位置可以直达的方格数作为走法得价值。搜索全部
+ *     可能的走法后，取价值最大的作为当前有效走法。
+ *
+ * *******************************************************************/
+
+#include "stdafx.h"
+#include "Amazons.h"
+#include "Computer.h"
+
+#include "fstream.h"
+
+#ifdef _DEBUG
+#undef THIS_FILE
+static char THIS_FILE[]=__FILE__;
+#define new DEBUG_NEW
+#endif
+
+//////////////////////////////////////////////////////////////////////
+// Construction/Destruction
+//////////////////////////////////////////////////////////////////////
+
+CComputer::CComputer()
+{
+   
+}//初始化结束
+
+CComputer::~CComputer()
+{
+
+}
+
+double CComputer::cmax(double a, double b)
+{
+	return a > b ? a : b;
+}
+
+
+double CComputer::cmin(double a, double b)
+{
+	return a < b ? a : b;
+}
+
+int CComputer::calTotalGrid(int board[144], int i2, int record[40])
+{
+	int counter = 0;
+	
+	for(int j = 0; j < 8; j++)
+	{
+		int m = queen_direction[j];
+		int n = m + i2;                                          // 计数器
+		
+		while(board[n] == 0)
+		{
+			record[counter] = n;
+			counter++;
+			n += m;
+		}
+  }			
+    	                                                   // 保存行标
+	return counter;                                         // 返回counter的值
+} // 函数结束
+
+void CComputer::calOneGlidOne1(int &count, int i2, int b_anylze[144], int be_anylze[100], int gboard[144])
+{
+	for(int j = 0; j < 8; j++)
+	{
+		int m = queen_direction[j];
+		int n = m + i2;
+        int t = 1;
+      
+			while(gboard[n] == 0)
+			{
+			   if(b_anylze[n] == 100)
+			   {
+			  	  b_anylze[n] = t+b_anylze[i2];                //记录了所有一步可以到达的
+			  	  be_anylze[count] = n;
+			  	  count++;
+			   }
+			   
+			   else if((b_anylze[n] > t+b_anylze[i2])&&(b_anylze[n] != 100))
+			   {
+			  	 b_anylze[n] = t+b_anylze[i2];
+			   }
+			   
+			  t++;
+			  n += m;
+		 }
+	}
+}
+
+void CComputer::calOneGlidOne2(int &count, int i2, int b_anylze[144], int be_anylze[100], int gboard[144])
+{
+	for(int j = 0; j < 8; j++)
+	{
+		int m = queen_direction[j];
+		int n = m + i2;
+        int t = 1;
+      
+		while(gboard[n] == 0)
+		{
+        if(b_anylze[n] == 100)
+        {
+           	b_anylze[n] = t;
+	  			  be_anylze[count] = n;
+				    count++;
+        }
+        
+		else if(b_anylze[n] > t)
+		{
+             b_anylze[n] = t;
+
+		}
+			  
+			  t++;
+			  n += m;
+		  }
+	}
+}
+
+void CComputer::calFigure2(int j, int countgu1, int b_anylzeparam[144], int be_anylzeparam[100], int gboardparam[144])
+{
+	int countgu3 = 0;
+
+  for(int k = 0; k < 4; k++)
+	{
+		int i2 = (j ? human[k] : computer[k]);
+		calOneGlidOne2(countgu3, i2, b_anylzeparam, be_anylzeparam, gboardparam);
+	}
+	 
+	for(int i = 0; i < 10; i++)
+	{
+		 if(countgu3 < countgu1)
+		 {
+			 for(int m = 0; m < countgu3; m++)
+			 {
+				 int i2 = be_anylzeparam[m];
+				 calOneGlidOne1(countgu3, i2, b_anylzeparam, be_anylzeparam, gboardparam);
+			 }
+		 }
+		 if(countgu3 == countgu1)
+        	break;
+  }
+}
+
+double CComputer::easyWay2(int countgu1, int b_anylze[4][144],int be_anylze[4][100], int gboard[144])
+{
+	calFigure2(0, countgu1, b_anylze[2], be_anylze[2], gboard);
+	calFigure2(1, countgu1, b_anylze[3], be_anylze[3], gboard);
+
+	double mmm = 0.0;
+	for(int j = 13; j < 130; j += 12)
+  {
+  	for(int i = 0; i < 10; i++)
+  	{
+  		int m = (i + j);
+  		if(b_anylze[2][m] != b_anylze[3][m])
+  		{
+  			mmm += ((b_anylze[2][m] > b_anylze[3][m]) ? -1 : 1);
+  		}
+  		else if((b_anylze[2][m] == 100)&&(b_anylze[3][m] == 100))
+  		{
+  			mmm += 0.0;
+  		}
+  		else
+  		{
+  			mmm += 0.1;
+  		}
+  	}
+  }
+  
+	return mmm;
+}
+
+void CComputer::calOneGlid(int &count, int i2, int b_anylze[144], int be_anylze[100], int gboard[144], int t)
+{
+	for(int j = 0; j < 8; j++)
+	{
+			int m = queen_direction[j];
+			int n = m + i2;
+			while(gboard[n] == 0)
+			{
+			   if(b_anylze[n] == 100)
+			   {
+			   	  b_anylze[n] = t;                //记录了所有一步可以到达的
+			   	  be_anylze[count] = n;
+			   	  count++;
+			   }
+			  else if((b_anylze[n] > t)&&(b_anylze[n] != 100))
+			  {
+			  	b_anylze[n] = t;
+			  }
+			  n += m;
+		 }
+	}
+}
+
+void CComputer::calFigure1(int j, int countgu1, int b_anylzeparam[144], int be_anylzeparam[100], int gboardparam[144])
+{
+  int countgu2 = 0;
+  int countgu3 = 0;
+  int tt = 1;
+  
+  for(int k = 0; k < 4; k++)
+	{
+		int i2 = (j ? human[k] : computer[k]);
+		calOneGlid(countgu2, i2, b_anylzeparam, be_anylzeparam, gboardparam, tt);
+	}
+
+	for(int i = 0; i < 7; i++)
+	{
+			countgu3 = countgu2;
+		if(countgu2 < countgu1)
+		{
+			tt++;
+			for(int k = 0; k < countgu2; k++)
+			{
+				int i2 = be_anylzeparam[k];
+				calOneGlid(countgu2, i2, b_anylzeparam, be_anylzeparam, gboardparam, tt);
+			}
+		}
+		
+		if(countgu2 == countgu1)
+		break;
+  }
+}
+
+double CComputer::easyWay1(int countgu1, int b_anylze[4][144], int be_anylze[4][100], int gboard[144])
+{
+	calFigure1(0, countgu1, b_anylze[0], be_anylze[0], gboard);
+	calFigure1(1, countgu1, b_anylze[1], be_anylze[1], gboard);
+
+  double mmm = 0;
+  for(int j = 13; j < 130; j += 12)
+  {
+  	 for(int i = 0; i < 10; i++)
+  	 {
+  		int m = (i + j);
+  		if(b_anylze[0][m] != b_anylze[1][m])
+  		{
+  			mmm += ((b_anylze[0][m] > b_anylze[1][m]) ? -1 : 1);
+  		}
+  		else if((b_anylze[0][m] == 100)&&(b_anylze[1][m] == 100))
+  		{
+  			mmm += 0.0;
+  		}
+  		else
+  		{
+  			mmm += 0.1;
+  		}
+      
+  	 }
+  }
+  
+	return mmm;
+}
+
+void CComputer::calCC(int b_anylze[4][144], double &c1, double &c2, double &w)
+{
+	for(int j = 13; j < 130; j += 12)
+  {
+  	for(int m = 0; m < 10; m++)
+  	{
+  		int ii = (m + j);
+  		int t=0 , g=0;
+  		t = (b_anylze[0][ii] == 100 ?  100000 : (1<<b_anylze[0][ii]));
+  		g = (b_anylze[1][ii] == 100 ?  100000 : (1<<b_anylze[1][ii]));
+  		c1 +=(2 * (1.0 / t - 1.0 / g));
+  		c2 += (min(1.0, max(-1, (b_anylze[3][ii] - b_anylze[2][ii])) / 6.0));
+  		w +=(1.0 / (1<<abs(b_anylze[0][ii] - b_anylze[1][ii])));
+	  }
+  }
+}
+
+
+int CComputer::boardZGboard(int i)
+{
+	switch(i)
+	{
+	case 0:
+		return 13;
+	case 1:
+		return 25;
+	case 2:
+		return 37;
+	case 3:
+		return 49;
+	case 4:
+		return 61;
+	case 5:
+		return 73;
+	case 6:
+		return 85;
+	case 7:
+		return 97;
+	case 8:
+		return 109;
+	case 9:
+		return 121;
+	default :
+		return 0;
+	}
+}
+
+// 对当前所有得走法进行评估，找出合理得做法
+void CComputer::createPosition( BYTE board[10][10], int humanX[4], int humanY[4],int computerX[4], int computerY[4] )
+{
+  ofstream infile("infor.txt",ios::in|ios::app);   //文件以输入方式打开（文件数据输入到内存）
+	int gboard[144];                   //棋盘坐标
+	
+	for(int n=0; n < 12; n++)           //初始化界面的值
+	{
+		gboard[n] = BIAN;
+		gboard[12 * n] = BIAN;
+		gboard[12 * n + 11] = BIAN;
+		gboard[132 + n] = BIAN;
+	}   //gboard初始化完毕
+
+	//初始化gboard
+  int j = 13;
+  for(int i = 0; (i < 10)&&(j < 130); i++)            //gboard与board的转化还有computer和human的转化
+  {
+  	for(int m = 0; m < 10; m++)
+  	{
+  		int ii = (m + j);
+  		gboard[ii] = board[i][m];
+	}
+	j += 12;
+  }
+
+	for(int mm = 0; mm < 4; mm++)           //初始化human和computer的位置
+	{		
+		 computer[mm] = boardZGboard(computerY[mm]) + computerX[mm];
+		 human[mm] = boardZGboard(humanY[mm]) + humanX[mm];
+	}
+  
+  double computerValue3 = -10000.0;
+  int recordma[3] = {0};
+  int record3 = 0;
+  for(int k = 0; k < 4; k++)                            //第六层
+  {
+  	int b1_empty_list[40];                                //记录走棋位置
+  	int counter1 = calTotalGrid(gboard, computer[k], b1_empty_list);
+
+    double computerValue2 = -10000.0;
+  	int record2 = 0;
+
+  	for(int j = 0; j < counter1; j++)                  //第五层
+  	{
+		  //走一步棋
+			int tgg = gboard[computer[k]];              //最后一定将其变过来
+			gboard[b1_empty_list[j]] = gboard[computer[k]];
+			gboard[computer[k]] = EMPTY;
+		    int tg = computer[k];
+		    computer[k] = b1_empty_list[j];
+
+			//选择射箭的位置
+			int b2_empty_list[40];                                   //记录射箭位置
+	    //记录射箭中最大的位置
+			int counter2 = calTotalGrid(gboard, b1_empty_list[j], b2_empty_list);
+  //	cout<<counter1;
+
+			double computerValue1 = -10000.0;
+			int record1 = 0;
+			for(int i = 0; i < counter2; i++)           //第四层
+			{
+				int b_anylze[4][144];              //记录空格多少
+
+	int be_anylze[4][100] = {0};             //空格的值为多少
+
+	for(int m = 0; m < 4; m++)
+	for(int j = 0; j < 144; j++)
+	{
+		b_anylze[m][j] = 100;
+	}
+
+				gboard[b2_empty_list[i]] = ARROW;        //最后一定将其置为0，
+				//选择当前x2 y2 所对应的最大估值
+				double t1 = easyWay1(countgu1, b_anylze, be_anylze, gboard);
+				double t2 = easyWay2(countgu1, b_anylze, be_anylze, gboard);
+
+				double c1 = 0.0;
+				double c2 = 0.0;
+				double w = 0.0;
+
+				calCC(b_anylze, c1, c2, w);              //一定得弄清这个公式
+
+				double f = c1 + c2 + t1 + t2;
+				if((computerValue1 - f) <= 0)
+				{
+					computerValue1 = f;
+					record1 = b2_empty_list[i];
+				}
+                gboard[b2_empty_list[i]] = EMPTY;
+			}
+
+			if((computerValue2 - computerValue1) <= 0)
+			{
+
+				computerValue2 = computerValue1;
+				record2 = b1_empty_list[j];
+				record3 = record1;                  //记录射箭位置
+
+			}
+
+			gboard[computer[k]] = EMPTY;
+			gboard[b1_empty_list[j]] = EMPTY;
+            computer[k] = tg;
+			gboard[computer[k]] = tgg;
+
+	  }
+	  if((computerValue3 - computerValue2) <= 0)
+	  {
+	  	computerValue3 = computerValue2;
+		recordma[0] = record3;
+	  	recordma[1] = record2;                        //记录走棋位置
+	  	recordma[2] = k;                            //记录哪个棋子走动
+	  }
+  }
+  ArrowToY = recordma[0] / 12 - 1;
+  ArrowToX = recordma[0] % 12 - 1;
+  QueenGoY = recordma[1] / 12 - 1;
+  QueenGoX = recordma[1] % 12 - 1;
+  QueenFromY = computer[recordma[2]] / 12 - 1;
+  QueenFromX = computer[recordma[2]] % 12 - 1;
+  countgu1 = countgu1 - 2;
+}
+
+int CComputer::countgu1 = 92;
