@@ -10,11 +10,11 @@ int main()
 	strcpy(b, arr);
 	int i = 0;
 	int len=strlen(arr);
-	for (i = len-1; i >=len/2; i--)
+	for (i = len-1; i >len/2; i--)
 	{
 		char c;
-		c = *(b);
-		*(b) = *(b + i);
+		c = *(b+len-1-i);
+		*(b+len-1-i) = *(b + i);
 		*(b + i) = c;
 	}
 	int result=strcmp(arr, b);
