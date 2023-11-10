@@ -23,11 +23,11 @@ typedef struct Stlist
 }slt;
 bool push(slt &s,int pos,EleMent x)
 {
-	for (int i = s.capacity; i >=pos-1; i--)
+	for (int i = s.capacity-1; i >=pos-1; i--)
 	{
-		s.arr[i] = s.arr[i-1];
-		s.arr[pos-1] = x;
+		s.arr[i+1] = s.arr[i];
 	}
+	s.arr[pos-1] = x;
 	s.capacity++;
 	return true;
 }
@@ -51,6 +51,7 @@ void print(slt s)
 	{
 		printf("%3d", s.arr[i]);
 	}
+	printf("\n");
 }
 int main()
 {
