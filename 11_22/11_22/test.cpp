@@ -46,12 +46,12 @@ void find_middle(Node* L, Node*& L2)
 		pcur = pcur->next;
 		if (NULL == pcur)
 		{
-			return;
+			break;
 		}
 		pcur = pcur->next;
 		if (NULL == pcur)
 		{
-			return;
+			break;
 		}
 		ppre = ppre->next;
 	}
@@ -70,7 +70,7 @@ void reverse(Node* L2)
 	s = r->next;
 	if (NULL == s)
 	{
-		return;
+		return ;
 	}
 	t = s->next;
 	while (t)
@@ -112,12 +112,15 @@ void merge(Node* L, Node* L2)
 
 int main()
 {
-	Node* L,*L2=NULL;
+	Node* L;
 	List_tail_insert(L);
 	print(L);
+	printf("\n");
+	Node* L2 = NULL;
 	find_middle(L,L2);
 	reverse(L2);
 	merge(L, L2);
 	print(L);
+	free(L2);
 	return 0;
 }
