@@ -4,22 +4,20 @@
 #include<time.h>
 typedef  int ElemType;
 typedef struct {
-	ElemType* elem;//ÕûĞÍÖ¸Õë
-	int TableLen;//´æ´¢¶¯Ì¬Êı×éÀï±ßÔªËØµÄ¸öÊı
+	ElemType* elem;//æ•´å‹æŒ‡é’ˆ
+	int TableLen;//å­˜å‚¨åŠ¨æ€æ•°ç»„é‡Œè¾¹å…ƒç´ çš„ä¸ªæ•°
 }SSTable;
 
 int search_seq(SSTable ST, ElemType key)
 {
 	ST.elem[0] = key;
 	int i;
-	for (i = ST.TableLen - 1; ST.elem[i] != key; --i)
-	{
-		return i;
-	}
+	for (i = ST.TableLen - 1; ST.elem[i] != key; --i);
+	return i;
 }
 void ST_Init(SSTable &ST, int len)
 {
-	ST.TableLen = len + 1;//¶àÉêÇëÒ»¸öÎªÉÚ±øÎ»
+	ST.TableLen = len + 1;//å¤šç”³è¯·ä¸€ä¸ªä¸ºå“¨å…µä½
 	ST.elem = (ElemType*)malloc(sizeof(ElemType) * ST.TableLen);
 	int i = 0;
 	srand(time(NULL));
@@ -29,22 +27,30 @@ void ST_Init(SSTable &ST, int len)
 	}
 }
 
-
+void ST_Print(SSTable ST)
+{
+	for (int i = 1; i < ST.TableLen; i++)
+	{
+		printf("%3d", ST.elem[i]);
+	}
+	printf("\n");
+}
 int main()
 {
 	SSTable ST;
 	ElemType key=0;
 	int pos;
 	ST_Init(ST, 10);
-	printf("ÇëÊäÈëkeyÖµ");
-	scanf("%d", key);
+	ST_Print(ST);
+	printf("è¯·è¾“å…¥keyå€¼\n");
+	scanf("%d", &key);
 	pos = search_seq(ST, key);
 	if (pos)
 	{
-		printf("²éÕÒ³É¹¦£¬%d\n", pos);
+		printf("æŸ¥æ‰¾æˆåŠŸï¼Œ%d\n", pos);
 
 	}
 	else
-		printf("²éÕÒÊ§°Ü");
+		printf("æŸ¥æ‰¾å¤±è´¥");
 	return 0;
 }
