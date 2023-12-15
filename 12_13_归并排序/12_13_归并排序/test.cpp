@@ -3,8 +3,8 @@
 #include<time.h>
 
 #define N 7
-typedef int	Elemtype;
-//
+typedef int Elemtype;
+
 //typedef struct {
 //	Elemtype* elem;
 //	int TableLen;
