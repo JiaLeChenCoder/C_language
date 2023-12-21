@@ -6,7 +6,7 @@ typedef struct LNode {
     Elemtype data;
     struct LNode* next;
 }LNode, * LinkList;
-//ͷ�巨
+
 void List_head_insert(LinkList& L)
 {
     L = (LinkList)malloc(sizeof(LNode));
