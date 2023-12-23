@@ -1,0 +1,2 @@
+﻿D:\vs安装\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(1134,5): error MSB6006: “link.exe”已退出，代码为 1168。
+LINK : fatal error LNK1168: 无法打开 D:\vs2022实例\12_23_按值查找与在第i个位置插入元素\x64\Debug\12_23_按值查找与在第i个位置插入元素.exe 进行写入
