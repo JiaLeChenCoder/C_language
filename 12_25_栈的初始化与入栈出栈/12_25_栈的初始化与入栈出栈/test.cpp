@@ -4,17 +4,17 @@
 #define MaxSize 50
 typedef int ElemeType;
 typedef struct {
-	ElemeType data[MaxSize];//Êı×é
-	int top;//Ê¼ÖÕÖ¸ÏòÕ»¶¥Ò»¸ö±äÁ¿
+	ElemeType data[MaxSize];//æ•°ç»„
+	int top;//å§‹ç»ˆæŒ‡å‘æ ˆé¡¶ä¸€ä¸ªå˜é‡
 }Sqstack;
 
-//³õÊ¼»¯Õ»
+//åˆå§‹åŒ–æ ˆ
 void Initstack(Sqstack& s)
 {
-	s.top = -1;//Õ»Îª¿Õ
+	s.top = -1;//æ ˆä¸ºç©º
 }
 
-//ÅĞ¿Õ
+//åˆ¤ç©º
 bool StackEmpty(Sqstack s)
 {
 	if (s.top == -1)
@@ -25,10 +25,10 @@ bool StackEmpty(Sqstack s)
 		return false;
 }
 
-//ÈëÕ»
+//å…¥æ ˆ
 bool push(Sqstack& s, ElemeType x)
 {
-	//ÅĞ¶ÏÊÇ·ñÂúÁË
+	//åˆ¤æ–­æ˜¯å¦æ»¡äº†
 	if (MaxSize - 1 == s.top)
 	{
 		return false;
@@ -36,7 +36,7 @@ bool push(Sqstack& s, ElemeType x)
 	s.data[++s.top] = x;
 	return true;
 }
-//»ñÈ¡Õ»¶¥ÔªËØ
+//è·å–æ ˆé¡¶å…ƒç´ 
 bool GetTop(Sqstack s, ElemeType& m)
 {
 	if (StackEmpty(s))
@@ -47,7 +47,7 @@ bool GetTop(Sqstack s, ElemeType& m)
 	return true;
 }
 
-//µ¯Õ»
+//å¼¹æ ˆ
 bool Pop(Sqstack& s, ElemeType& m)
 {
 	if (StackEmpty(s))
@@ -58,7 +58,7 @@ bool Pop(Sqstack& s, ElemeType& m)
 	return true;
 }
 
-//´òÓ¡
+//æ‰“å°
 void print(Sqstack s)
 {
 	int i = 0;
@@ -92,12 +92,15 @@ int main()
 	 int x=0;
 	 flag = GetTop(s,x);
 	 if (flag)
-		 printf("Õ»¶¥ÔªËØÊÇ%d\n", x);
-
+	 {
+		 printf("æ ˆé¡¶å…ƒç´ æ˜¯%d\n", x);
+	 }
 	 flag =Pop(s, x);
 	 if (flag)
-		 printf("µ¯³öÕ»¶¥ÔªËØÊÇ%d\n", x);
-	 printf("µ¯³öºóµÄÎª\n");
+	 {
+		 printf("å¼¹å‡ºæ ˆé¡¶å…ƒç´ æ˜¯%d\n", x);
+	 }
+		 printf("å¼¹å‡ºåçš„ä¸º\n");
 	 print(s);
 
 
