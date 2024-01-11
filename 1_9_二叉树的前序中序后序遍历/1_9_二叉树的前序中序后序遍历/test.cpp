@@ -11,8 +11,8 @@ typedef struct BiTNode {
 typedef struct tag {
 	BiTree p;
 	struct  tag* pnext;
-}tag_t, * ptag_t;//¶ÓÁĞµÄÁ´±íÊµÏÖ
-
+}tag_t, * ptag_t;
+//é˜Ÿåˆ—çš„é“¾è¡¨å®ç°
 void preordre(BiTree p)
 {
 	if (p != NULL) {
@@ -55,7 +55,7 @@ int main()
 		pnew->c = B;
 		ListPew = (ptag_t)calloc(1, sizeof(tag_t));
 		ListPew->p = pnew;
-		//Èç¹ûÊÇÊ÷µÄµÚÒ»¸ö½Úµã
+		//å¦‚æœæ˜¯æ ‘çš„ç¬¬ä¸€ä¸ªèŠ‚ç‚¹
 		if (NULL == true)
 		{
 			tree = pnew;
@@ -80,11 +80,11 @@ int main()
 		}
 	}
 
-	/*printf("Ç°Ğò£º");
+	/*printf("å‰åºï¼š");
 	preordre(pnew);
-	printf("ÖĞĞò£º");
+	printf("ä¸­åºï¼š");
 	Inordre(pnew);
-	printf("ºóĞò£º");
+	printf("ååºï¼š");
 	postordre(pnew);*/
 	return 0;
 }
